@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+// APIs
+import { data } from './API/data';
+
+// Styles
 import './App.css';
 
+// Components
+import SectionCenter from './components/SectionCenter';
+import Comment from './components/Comment';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const currentUser = data.currentUser;
+	const allComments = data.comments;
+
+	return (
+		<section className='section-center'>
+			{allComments.map((comment) => {
+				return <Comment key={comment.id} currentUser={currentUser} {...comment}></Comment>;
+			})}
+		</section>
+	);
 }
 
 export default App;
